@@ -19,17 +19,17 @@ app.use(express.json());
 
 // Basic route for the homepage
 app.get('/', (req, res) => {
-  res.send('Welcome to the Node.js Server!');
+    res.send('Welcome to the Node.js Server!');
 });
 
 // Sample API route
 app.get('/api', (req, res) => {
-  res.json({ message: 'Hello from the API!' });
+    res.json({ message: 'Hello from the API!' });
 });
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
 
 client.once("ready", () => {
@@ -54,15 +54,20 @@ client.on("messageCreate", async (message) => {
             return message.reply(`No members found in the "${roleName}" role.`);
         }
 
-        message.reply(
-            `Sending DM to ${members.size} members in "${roleName}"...`,
-        );
+        message.reply(`Sending DM to ${members.size} members in "${roleName}"...`);
 
         members.forEach((member) => {
             if (!member.user.bot) {
                 member.send(customMessage).catch(() => {});
             }
         });
+    }
+
+    // New Feature: Echo and delete messages starting with "!EV"
+    if (message.content.startsWith("!EV ")) {
+        const echoMessage = message.content.slice(4);
+        message.channel.send(echoMessage);
+        message.delete().catch(console.error); // Delete the original message
     }
 });
 
