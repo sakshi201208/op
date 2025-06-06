@@ -1,0 +1,16 @@
+{
+  "name": "discord-bot-project",
+  "version": "1.0.0",
+  "description": "A Discord bot that sends direct messages to new members when a trigger command is used.",
+  "main": "src/bot.js",
+  "scripts": {
+    "start": "node src/bot.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0"
+  },
+  "author": "Your Name",
+  "license": "MIT"
+}
